@@ -1,3 +1,9 @@
+# This file is not ai generated, only tem main code to run the ai agent in terminal, and load the keys from environment or file.
+
+# Helped by Visual Studio Code Inline Suggestions.
+
+
+
 import os
 import requests
 import json
