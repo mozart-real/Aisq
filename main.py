@@ -1,4 +1,4 @@
-# This file is not ai generated, only tem main code to run the ai agent in terminal, and load the keys from environment or file.
+# This file is not ai generated, only the main code to run the ai agent in terminal, and load the keys from environment or file.
 
 # Helped by Visual Studio Code Inline Suggestions.
 
@@ -53,14 +53,14 @@ def load_keys():
         except Exception: pass
 
     if not keys["square"]:
-        console.print(Panel("[bold yellow]🔑 Configuração Inicial[/bold yellow]\nA chave da SquareCloud é necessária.", border_style="yellow"))
+        console.print(Panel("[bold yellow] Configuração Inicial[/bold yellow]\nA chave da SquareCloud é necessária.", border_style="yellow"))
         keys["square"] = Prompt.ask("SQUARECLOUD_API_KEY").strip()
-        keys["groq"] = Prompt.ask("GROQ_API_KEY (Opcional para Fallback)", default="").strip()
+        keys["groq"] = Prompt.ask("GROQ_API_KEY (Opcional para Fallback mas altamente recomendado)", default="").strip()
         with open(KEYS_FILE, 'w') as f:
             json.dump(keys, f)
     return keys
 
-SYSTEM_PROMPT = """Você é um Agente de Engenharia de Software Autônomo de Elite operando diretamente no terminal do usuário.
+SYSTEM_PROMPT = """Você é Cubic um agente de ia disponivel para varias tarefas mais principalmente envolvendo programação operando diretamente no terminal do usuário.
 Sua prioridade é investigar, planejar e executar alterações em código e sistemas com máxima autonomia e precisão.
 
 DIRETRIZES DE AÇÃO:
@@ -201,7 +201,7 @@ def stream_ai_api(messages, keys):
                 yield from process_stream_response(resp)
                 return
             if resp.status_code == 429 and keys.get("groq"):
-                yield "\n[warning]⚡ Redirecionando para Groq (Llama 3.3)...[/warning]\n"
+                yield "\n[warning] Redirecionando para Groq (Llama 3.3)...[/warning]\n"
                 resp = requests.post("https://api.groq.com/openai/v1/chat/completions",
                     headers={"Authorization": f"Bearer {keys['groq']}"},
                     json={"model": "llama-3.3-70b-versatile", "messages": messages, "stream": True},
@@ -226,24 +226,24 @@ class OllamaHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(out).encode())
 
 def format_for_display(text):
-    return re.sub(r'<think>(.*?)</think>', r'\n> 💭 \1\n', text, flags=re.S)
+    return re.sub(r'<think>(.*?)</think>', r'\n>  \1\n', text, flags=re.S)
 
 def main():
     keys = load_keys()
     threading.Thread(target=lambda: HTTPServer(('127.0.0.1', 11434), OllamaHandler).serve_forever(), daemon=True).start()
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
-    console.print(Panel("[bold magenta]🚀 AI CLI Agent v4.0[/bold magenta]\n[dim]Habilidades Autônomas + Streaming Ativados[/dim]", border_style="magenta"))
+    console.print(Panel("[bold magenta]Cubic CLI alpha/2.2[/bold magenta]\n[dim][/dim]", border_style="magenta"))
     
     while True:
         try:
             inp = console.input(f"\n[user]❯ ({os.getcwd()})[/user] ").strip()
             
-            # --- COMANDO CLEAR ---
+           
             if inp.lower() == "/clear":
                 messages = [{"role": "system", "content": SYSTEM_PROMPT}]
-                console.print("[success]🚀 Memória limpa com sucesso! O agente foi resetado.[/success]")
+                console.print("[success] Memória limpa com sucesso! O agente foi resetado.[/success]")
                 continue
-            # ---------------------
+         
             
             if inp.lower() in ['exit', 'quit', 'sair']: break
             if not inp: continue
@@ -272,7 +272,14 @@ def main():
 
                 messages.append({"role": "assistant", "content": full_message})
 
-                blocks = re.findall(r'```(?:json)?\n?(.*?)\n?```', full_message, re.S)
+                # Melhoria: Regex mais robusto para capturar JSON e limpar sujeira
+                blocks = []
+                json_raw_blocks = re.findall(r'```(?:json)?\s*(\{.*?\})\s*```', full_message, re.S)
+                for raw in json_raw_blocks:
+                    # Limpa possíveis comentários ou caracteres invisíveis que quebram o JSON
+                    clean_raw = re.sub(r'//.*', '', raw) 
+                    blocks.append(clean_raw)
+                
                 xmls = re.findall(r'<(?:tool_call|function)=(.*?)>(.*?)(?:</(?:tool_call|function)>|$)', full_message, re.S | re.I)
                 for name, cont in xmls:
                     d = {"action": name.strip()}
