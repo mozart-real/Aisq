@@ -4,7 +4,7 @@
 
 ---
 
-## 💡 Ideia
+##  Ideia
 
 O **Tolls** nasceu inspirado na ideia do modelo *cubic* da SquareCloud para rodar nativamente no ambiente da hospedagem. O projeto evoluiu para o nome **Tolls** justamente porque deixou de ser limitado a apenas um modelo: agora oferece suporte a múltiplos modelos de IA, permitindo manipulação de contexto e execução de comandos diretamente pelo terminal.
 
@@ -12,19 +12,19 @@ Feito por mim  por pura **utilidade pública**! :)
 
 ---
 
-## ✨ Funcionalidades
+##  Funcionalidades
 
 O **Tolls** fornece um conjunto versátil de utilitários de linha de comando para gerenciamento de arquivos e contexto de IA:
 
-- 🔍 **Pesquisar:** Busca rápida por informações na web 
-- 📁 **Navegação de Diretórios:** Leitura, listagem e criação de estruturas de pastas.
-- 📄 **Gestão de Arquivos:** Criação, edição, visualização de informações/metadados e exclusão de arquivos.
-- 🧠 **Suporte Multimodelo e Skills:** Leitura de arquivos de *skills* (contexto e instruções) para enviar a praticamente qualquer LLM.
-- ⚡ **E muito mais:** Expansão contínua de ferramentas para o ambiente local.
+-  **Pesquisar:** Busca rápida por informações na web 
+-  **Navegação de Diretórios:** Leitura, listagem e criação de estruturas de pastas.
+-  **Gestão de Arquivos:** Criação, edição, visualização de informações/metadados e exclusão de arquivos.
+-  **Suporte Multimodelo e Skills:** Leitura de arquivos de *skills* (contexto e instruções) para enviar a praticamente qualquer LLM.
+-  **E muito mais:** Expansão contínua de ferramentas para o ambiente local.
 
 ---
 
-## 🛠️ Como foi Implementado
+##  Como foi Implementado
 
 - **Python Nativo:** Desenvolvido utilizando bibliotecas nativas do Python para garantir leveza, alta performance e zero dependências externas complexas.
 - **Ambiente Linux:** Construído e otimizado com base em funções nativas do sistema operacional Linux.
@@ -32,7 +32,7 @@ O **Tolls** fornece um conjunto versátil de utilitários de linha de comando pa
 
 ---
 
-## 🚀 Como Executar
+##  Como Executar
 
 ### Pré-requisitos
 - Python 3.8 ou superior instalado no Linux.
