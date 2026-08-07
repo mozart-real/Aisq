@@ -39,7 +39,7 @@ O **Tolls** fornece um conjunto versátil de utilitários de linha de comando pa
 
 ### Clonando o Repositório
 ```bash
-git clone [https://github.com/mozart-real/Tolls.git](https://github.com/mozart-real/Tolls.git)
+git clone https://github.com/mozart-real/Tolls.git
 cd Tolls
 ```
 ### Executando 
