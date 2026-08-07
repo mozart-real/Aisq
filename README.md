@@ -16,7 +16,7 @@ Feito por mim  por pura **utilidade pública**! :)
 
 O **Tolls** fornece um conjunto versátil de utilitários de linha de comando para gerenciamento de arquivos e contexto de IA:
 
-- 🔍 **Pesquisar:** Busca rápida por arquivos e diretórios no sistema.
+- 🔍 **Pesquisar:** Busca rápida por informações na web 
 - 📁 **Navegação de Diretórios:** Leitura, listagem e criação de estruturas de pastas.
 - 📄 **Gestão de Arquivos:** Criação, edição, visualização de informações/metadados e exclusão de arquivos.
 - 🧠 **Suporte Multimodelo e Skills:** Leitura de arquivos de *skills* (contexto e instruções) para enviar a praticamente qualquer LLM.
