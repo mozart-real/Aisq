@@ -192,7 +192,7 @@ def select_default_provider(keys):
         if keys.get(p):
             ACTIVE_PROVIDER = p
             if p == "square": ACTIVE_MODEL = "cubic"
-            elif p == "gemini": ACTIVE_MODEL = "gemini-2.5-flash"
+            elif p == "gemini": ACTIVE_MODEL = "gemini-2.5-flash-lite"
             elif p == "openai": ACTIVE_MODEL = "gpt-4o-mini"
             elif p == "anthropic": ACTIVE_MODEL = "claude-3-5-sonnet-20241022"
             elif p == "groq": ACTIVE_MODEL = "llama-3.3-70b-versatile"
@@ -283,7 +283,7 @@ def load_skills(query=None):
                 console.print(f"[danger]Erro ao carregar skill {skill_file.name}: {e}[/danger]")
     return skills_text
 
-SYSTEM_PROMPT_BASE = """Você é Cubic um agente de ia disponivel para varias tarefas mais principalmente envolvendo programação operando diretamente no terminal do usuário.
+SYSTEM_PROMPT_BASE = """Você é um agente de ia disponivel para varias tarefas mais principalmente envolvendo programação operando diretamente no terminal do usuário.
 Sua prioridade é investigar, planejar e executar alterações em código e sistemas com máxima autonomia e precisão.
 
 DIRETRIZES DE AÇÃO:
@@ -591,13 +591,13 @@ def stream_ai_api(messages, keys):
         if prov != ACTIVE_PROVIDER:
             defaults = {
                 "square": "cubic",
-                "gemini": "gemini-2.5-flash",
+                "gemini": "gemini-2.5-flash-lite",
                 "openai": "gpt-4o-mini",
                 "anthropic": "claude-3-5-sonnet-20241022",
                 "groq": "llama-3.3-70b-versatile"
             }
             model = defaults[prov]
-            yield f"\n[warning] Redirecionando para {prov} ({model}) devido a erro ou timeout...[/warning]\n"
+            yield f"\n[warning] Redirecionando para {prov} ({model}) .[/warning]\n"
             
         with API_LOCK:
             elapsed = time.time() - LAST_API_CALL
@@ -739,10 +739,10 @@ def show_help():
 | `/auto <prompt>` | Entra no modo de automação para executar tarefas complexas passo a passo. |
 | `exit` / `quit` | Encerra a execução da CLI. |
 """
-    console.print(Panel(Markdown(help_text), title="[bold magenta]Cubic Help Menu[/bold magenta]", border_style="magenta"))
+    console.print(Panel(Markdown(help_text), title="[bold magenta]Tools Help Menu[/bold magenta]", border_style="magenta"))
 
 def run_auto_mode(initial_prompt, keys):
-    console.print(Panel("[bold green]ENTRANDO NO MODO AUTOMAÇÃO[/bold green]\nO Cubic agirá de forma autônoma.", border_style="green"))
+    console.print(Panel("[bold green]ENTRANDO NO MODO AUTOMAÇÃO[/bold green]\nO Tolls agirá de forma autônoma.", border_style="green"))
     
     messages = [
         {"role": "system", "content": get_full_system_prompt(initial_prompt) + "\n\n" + AUTO_PROMPT},
@@ -793,7 +793,7 @@ def main():
     threading.Thread(target=lambda: HTTPServer(('127.0.0.1', 11434), OllamaHandler).serve_forever(), daemon=True).start()
     
     welcome_msg = (
-        "[bold magenta]Cubic CLI alpha/2.5[/bold magenta]\n"
+        "[bold magenta] Tolls CLI alpha/2.5[/bold magenta]\n"
         "[dim]Sistema de Skills Ativado! Adicione arquivos .md em ./skills/[/dim]\n"
         f"[info]Provedor Ativo: {ACTIVE_PROVIDER} ({ACTIVE_MODEL})[/info]\n"
         "Digite [cyan]/help[/cyan] para ver a lista de comandos."

@@ -1,4 +1,4 @@
-# This file is not ai generated, only the main code to run the ai agent in terminal, and load the keys from environment or file.
+#windows mode is not update
 
 # Helped by Visual Studio Code Inline Suggestions.
 
