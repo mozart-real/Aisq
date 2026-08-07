@@ -8,7 +8,7 @@
 
 O **Tolls** nasceu inspirado na ideia do modelo *cubic* da SquareCloud para rodar nativamente no ambiente da hospedagem. O projeto evoluiu para o nome **Tolls** justamente porque deixou de ser limitado a apenas um modelo: agora oferece suporte a múltiplos modelos de IA, permitindo manipulação de contexto e execução de comandos diretamente pelo terminal.
 
-Feito para a comunidade por pura **utilidade pública**! :)
+Feito por mim  por pura **utilidade pública**! :)
 
 ---
 
