@@ -283,7 +283,7 @@ def load_skills(query=None):
                 console.print(f"[danger]Erro ao carregar skill {skill_file.name}: {e}[/danger]")
     return skills_text
 
-SYSTEM_PROMPT_BASE = """Você é Cubic um agente de ia disponivel para varias tarefas mais principalmente envolvendo programação operando diretamente no terminal do usuário.
+SYSTEM_PROMPT_BASE = """Você é [your model name] um agente de ia disponivel para varias tarefas mais principalmente envolvendo programação operando diretamente no terminal do usuário.
 Sua prioridade é investigar, planejar e executar alterações em código e sistemas com máxima autonomia e precisão.
 
 DIRETRIZES DE AÇÃO:
